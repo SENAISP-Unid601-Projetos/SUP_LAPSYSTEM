@@ -11,7 +11,7 @@ body *{
 .main-login{
     width: 100vw;
     height: 100vh;
-    background: rgb(135, 134, 134);
+    background-image: linear-gradient( gray, gray, gray, white, white) ; /*rgb(135, 134, 134)*/
     display: flex;
     justify-content: center; /*alinha os itens na horizontal*/
     align-items: center;     /*alinha os itens na vertical*/

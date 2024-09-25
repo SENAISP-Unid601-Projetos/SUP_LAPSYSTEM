@@ -9,9 +9,9 @@ body *{
 }
 
 .main-login{
-    width: 100vw;  /*largura*/
-    height: 170vh; /*altura*/
-    background: rgb(135, 134, 134);
+    width: 99.1vw;  /*largura*/
+    height: 110vh; /*altura*/
+    background-image: linear-gradient( gray, gray, gray, white, white) ; /*rgb(135, 134, 134)*/
     display: flex;
     justify-content: center; /*alinha os itens na horizontal*/
     align-items: start;     /*alinha os itens na vertical*/
@@ -20,8 +20,8 @@ body *{
 }
 
 .left-login{
-    width: 100vw;
-    height: 100vh;
+    width: 100vw;  /*largura*/
+    height: 100vh; /*altura*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +29,7 @@ body *{
     
 }
 
-.left-login > h1 {
+.left-login > h2 {
     color: white;
     font-size: 3vw;
 }
@@ -38,22 +38,6 @@ body *{
     width: 45vw;
     height: 45vh;
 
-}
-
-.btn-login-alt{
-    width: 88%;
-    padding: 16px 0px;
-    margin: 25px;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 800;
-    letter-spacing: 4px;
-    color: white;
-    background: #68AEC8;
-    cursor: pointer;
-    box-shadow: 0px 10px 40px -12px #68AEC8 ;
 }
 
 .right-login{
@@ -67,7 +51,7 @@ body *{
 }
 
 .card-login{
-    width: 60%;
+    width: 40vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,6 +63,11 @@ body *{
 
 }
 
+.anexos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .card-login > h1{
     color: white;
     font-weight: 800;
@@ -87,12 +76,23 @@ body *{
 }
 
 .textfield{
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     margin: 10px 0px;
+
+}
+
+.textfield > label{
+    color: #f0ffffde;
+    margin-bottom: 10px;
+
+}
+
+.textfield > input ::placeholder{
+    color: #f0ffff94;
 
 }
 
@@ -102,29 +102,68 @@ body *{
     border-radius: 10px;
     padding: 15px;
     background: white;
-    color: #f0ffffde;
+    color: black;
     font-size: 12pt;
     box-shadow: 0px 10px 40px #00000056;
     outline: none;
     box-sizing: border-box;
 
+}
+
+.textfield1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
 
 }
 
-.textfield > label{
+.textfield1 > input{
+    width: 95%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: white;
+    color: black;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+
+}
+
+.textfield1 > label{
     color: #f0ffffde;
     margin-bottom: 10px;
-    
 
 }
 
-.textfield > input ::placeholder{
+.textfield1 > input ::placeholder{
     color: #f0ffff94;
 
 }
 
 .btn-login{
-    width: 80%;
+    width: 50%;
+    padding: 16px 0px;
+    margin: 25px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 0.8vw;
+    letter-spacing: 4px;
+    color: white;
+    background: #68AEC8;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #68AEC8;
+}
+
+.btn-login-alt{
+    width: 90%;
     padding: 16px 0px;
     margin: 25px;
     border: none;
@@ -136,7 +175,7 @@ body *{
     color: white;
     background: #68AEC8;
     cursor: pointer;
-    box-shadow: 0px 10px 40px -12px #68AEC8;
+    box-shadow: 0px 10px 40px -12px #68AEC8 ;
 }
 
 @media only screen and (max-width: 950px){
