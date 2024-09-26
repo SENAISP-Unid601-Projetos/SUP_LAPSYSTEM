@@ -9,7 +9,7 @@ body *{
 }
 
 .main-login{
-    width: 100vw;  /*largura*/
+    width: 99vw;  /*largura*/
     height: 100vh; /*altura*/
     background-image: linear-gradient( gray, gray, gray, white, white) ; /*rgb(135, 134, 134)*/
     display: flex;
@@ -72,7 +72,7 @@ body *{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 30px 35px;
+    padding: 20px 10px 5px 10px;  /*top right botton left*/
     background: #4f4e4e;
     border-radius: 20px;
     box-shadow: 0px 10px 40px #00000056;

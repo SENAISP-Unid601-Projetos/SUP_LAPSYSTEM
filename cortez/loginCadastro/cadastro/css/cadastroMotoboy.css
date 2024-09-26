@@ -6,10 +6,11 @@ body{
 
 body *{
     box-sizing: border-box;
+
 }
 
 .main-login{
-    width: 99.1vw;  /*largura*/
+    width: 99vw;  /*largura*/
     height: 110vh; /*altura*/
     background-image: linear-gradient( gray, gray, gray, white, white) ; /*rgb(135, 134, 134)*/
     display: flex;
@@ -29,7 +30,7 @@ body *{
     
 }
 
-.left-login > h2 {
+.left-login > h3 {
     color: white;
     font-size: 3vw;
 }
@@ -56,7 +57,7 @@ body *{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 30px 35px;
+    padding: 20px 30px 5px 30px;  /*top right botton left*/
     background: #4f4e4e;
     border-radius: 20px;
     box-shadow: 0px 10px 40px #00000056;
