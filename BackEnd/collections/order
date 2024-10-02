@@ -1,0 +1,40 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "orders",
+    "collectionId": "ce41943f-4e2e-46f3-a6f6-0f4efbde97eb",
+    "dateExported": "2024-10-02T01:37:40.330Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "020946d5-905f-4ad9-a6d7-ca0bb2b47ed8",
+            "colId": "ce41943f-4e2e-46f3-a6f6-0f4efbde97eb",
+            "containerId": "",
+            "name": "save order",
+            "url": "localhost:5000/orders",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-10-02T01:36:11.877Z",
+            "modified": "2024-10-02T01:36:11.877Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"client_id\": 1,\r\n    \"delivery_id\": null,\r\n    \"status\": \"pending\",\r\n    \"address\": \"456 Rua Exemplo, Cidade, Estado, CEP\"\r\n}\r\n",
+                "form": []
+            }
+        },
+        {
+            "_id": "d17ee8e3-fec0-47a5-b25c-9a7eecdb4203",
+            "colId": "ce41943f-4e2e-46f3-a6f6-0f4efbde97eb",
+            "containerId": "",
+            "name": "getOrder",
+            "url": "http://127.0.0.1:5000/orders",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-10-02T01:36:47.892Z",
+            "modified": "2024-10-02T01:36:47.892Z",
+            "headers": []
+        }
+    ],
+    "ref": "Z1GZfBKVSK_gmVcJvFe2axB4fCoHiRaPDxzJuUbUEEyy6dXBF6PeDwoIFuEw3MghTi2tjdhTKr65vIoNuvya1w"
+}
