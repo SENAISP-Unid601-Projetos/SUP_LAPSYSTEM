@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Pedido</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        form { margin: 20px; }
+        input, button { margin: 5px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Criar Pedido</h1>
+    <form id="orderForm">
+        <input type="number" id="client_id" placeholder="ID do Cliente" required>
+        <input type="text" id="address" placeholder="Endereço" required>
+        <button type="submit">Enviar Pedido</button>
+    </form>
+    <div id="responseMessage"></div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const client_id = document.getElementById('client_id').value;
+            const address = document.getElementById('address').value;
+
+            const response = await fetch('http://127.0.0.1:5000/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ client_id, address })
+            });
+
+            const data = await response.json();
+            document.getElementById('responseMessage').innerText = data.message;
+        });
+    </script>
+</body>
+</html>

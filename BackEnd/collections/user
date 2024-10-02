@@ -1,0 +1,28 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "user",
+    "collectionId": "77441e2e-be57-4643-b031-a78591527e33",
+    "dateExported": "2024-10-02T01:38:05.045Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "8b97729a-f7c5-4c0e-88bd-989108ec9b4b",
+            "colId": "77441e2e-be57-4643-b031-a78591527e33",
+            "containerId": "",
+            "name": "save user",
+            "url": "http://127.0.0.1:5000/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-10-02T01:36:32.599Z",
+            "modified": "2024-10-02T01:36:32.599Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"username\": \"exemploUser\",\r\n  \"password\": \"senhaSegura123\",\r\n  \"user_type\": \"cliente\"\r\n}\r\n",
+                "form": []
+            }
+        }
+    ],
+    "ref": "m6NM7z6QQje_4YN5jWB0_fM_eUuKXlibhXLkAt6ZYpUnZpOefd207K0sGtppgzWPgn6_essc1U4MEPSVEJbdsQ"
+}

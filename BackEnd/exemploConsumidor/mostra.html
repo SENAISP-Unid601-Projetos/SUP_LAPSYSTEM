@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pedidos</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Pedidos</h1>
+    <button id="fetchOrders">Carregar Pedidos</button>
+    <table id="ordersTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Endereço</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.getElementById('fetchOrders').addEventListener('click', async function() {
+            const response = await fetch('http://127.0.0.1:5000/orders');
+            const orders = await response.json();
+
+            const tbody = document.getElementById('ordersTable').querySelector('tbody');
+            tbody.innerHTML = ''; // Limpa a tabela
+
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${order.id}</td><td>${order.status}</td><td>${order.address}</td>`;
+                tbody.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>
