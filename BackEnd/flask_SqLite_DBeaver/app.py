@@ -8,6 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///deliveries.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+# Configurando CORS para permitir requisições de qualquer origem
 CORS(app)
 
 with app.app_context():
@@ -16,10 +17,15 @@ with app.app_context():
 @app.route('/register', methods=['POST'])
 def register_user():
     data = request.json
-    if not data or 'username' not in data or 'password' not in data or 'user_type' not in data:
+    if not data or 'username' not in data or 'password' not in data or 'email' not in data or 'cpf' not in data:
         return jsonify({"message": "Invalid input"}), 400
-    
-    new_user = User(username=data['username'], password=data['password'], user_type=data['user_type'])
+
+    new_user = User(
+        username=data['username'],
+        password=data['password'],
+        email=data['email'],
+        cpf=data['cpf']
+    )
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "User registered successfully"}), 201
@@ -30,14 +36,14 @@ def create_order():
     new_order = Order(client_id=data['client_id'], address=data['address'])
     db.session.add(new_order)
     db.session.commit()
-    return jsonify({'message': 'Order created successfully'}), 201
+    return jsonify({'message': 'Ordem criada com sucesso'}), 201
 
 @app.route('/orders/<int:order_id>', methods=['GET'])
 def get_order(order_id):
     order = Order.query.get(order_id)
     if order:
         return jsonify({'id': order.id, 'status': order.status, 'address': order.address})
-    return jsonify({'message': 'Order not found'}), 404
+    return jsonify({'message': 'Ordem não encontrada'}), 404
 
 @app.route('/orders/all', methods=['GET'])
 def get_all_orders():
