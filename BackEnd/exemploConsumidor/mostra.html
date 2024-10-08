@@ -27,7 +27,7 @@
 
     <script>
         document.getElementById('fetchOrders').addEventListener('click', async function() {
-            const response = await fetch('http://127.0.0.1:5000/orders');
+            const response = await fetch('http://127.0.0.1:5000/orders/all');
             const orders = await response.json();
 
             const tbody = document.getElementById('ordersTable').querySelector('tbody');
