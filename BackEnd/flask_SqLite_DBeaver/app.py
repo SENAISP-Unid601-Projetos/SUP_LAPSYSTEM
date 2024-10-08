@@ -14,6 +14,20 @@ CORS(app)
 with app.app_context():
     db.create_all()  # Cria as tabelas no banco de dados
 
+@app.route('/login', methods=['POST'])
+def login_user():
+    data = request.json
+    if not data or 'username' not in data or 'password' not in data:
+        return jsonify({"message": "Invalid input"}), 400
+
+    user = User.query.filter_by(username=data['username']).first()
+    
+    if user and user.password == data['password']:  # Aqui você deve usar uma verificação segura de senha
+        return jsonify({"message": "Login successful", "user_id": user.id}), 200
+    else:
+        return jsonify({"message": "Invalid username or password"}), 401
+
+
 @app.route('/register', methods=['POST'])
 def register_user():
     data = request.json
