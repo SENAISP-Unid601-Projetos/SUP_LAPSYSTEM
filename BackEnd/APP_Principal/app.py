@@ -2,6 +2,8 @@ from flask import Flask, jsonify, request
 from database import db
 from flask_cors import CORS
 from models import User, Order
+import os
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///deliveries.db'
@@ -9,7 +11,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 # Configurando CORS para permitir requisições de qualquer origem
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}) 
+
+
 
 with app.app_context():
     db.create_all()  # Cria as tabelas no banco de dados
@@ -70,5 +74,40 @@ def get_all_orders():
     } for order in orders]  # Cria uma lista de dicionários para cada ordem
     return jsonify(orders_list), 200  # Retorna a lista de ordens em formato JSON
 
+
+# Defina o diretório onde os arquivos enviados serão salvos
+UPLOAD_FOLDER = 'uploads/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Certifique-se de que a pasta existe
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    print("entrei")
+    if 'file' not in request.files:
+        return jsonify({"message": "No file part"}), 400
+    
+    
+
+    file = request.files['file']
+    
+    if file.filename == '':
+        return jsonify({"message": "No selected file"}), 400
+    
+    if file:
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(file_path)
+        return jsonify({"message": f"File uploaded successfully to {file_path}"}), 200
+
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
+    return response
+
 if __name__ == '__main__':
     app.run(debug=True)
+

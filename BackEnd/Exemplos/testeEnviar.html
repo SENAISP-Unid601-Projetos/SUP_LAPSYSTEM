@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Arquivo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: none;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload de Arquivo</h2>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" required>
+            <button type="submit">Enviar</button>
+        </form>
+        <div class="response" id="response"></div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o comportamento padrão do formulário
+
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Por favor, selecione um arquivo!');
+                return;
+            }
+
+            // Crie um formulário de dados para enviar o arquivo
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Realize a requisição AJAX para enviar o arquivo
+            fetch('http://127.0.0.1:5000/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const responseDiv = document.getElementById('response');
+                responseDiv.style.display = 'block';
+                if (data.message) {
+                    responseDiv.innerHTML = `<span class="success">${data.message}</span>`;
+                } else {
+                    responseDiv.innerHTML = `<span class="error">Erro ao enviar o arquivo.</span>`;
+                }
+            })
+            .catch(error => {
+                const responseDiv = document.getElementById('response');
+                responseDiv.style.display = 'block';
+                responseDiv.innerHTML = `<span class="error">Ocorreu um erro: ${error}</span>`;
+            });
+        });
+    </script>
+</body>
+</html>
