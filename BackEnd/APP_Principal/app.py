@@ -6,12 +6,17 @@ import os
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///deliveries.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(basedir, "database/deliveries.db")}'
+
 db.init_app(app)
 
 # Configurando CORS para permitir requisições de qualquer origem
 CORS(app, resources={r"/*": {"origins": "*"}}) 
+
+
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
 
 
 
@@ -75,39 +80,17 @@ def get_all_orders():
     return jsonify(orders_list), 200  # Retorna a lista de ordens em formato JSON
 
 
-# Defina o diretório onde os arquivos enviados serão salvos
-UPLOAD_FOLDER = 'uploads/'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Certifique-se de que a pasta existe
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/upload', methods=['POST'])
-def upload_file():
-    print("entrei")
-    if 'file' not in request.files:
-        return jsonify({"message": "No file part"}), 400
-    
-    
-
-    file = request.files['file']
-    
-    if file.filename == '':
-        return jsonify({"message": "No selected file"}), 400
-    
-    if file:
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(file_path)
-        return jsonify({"message": f"File uploaded successfully to {file_path}"}), 200
+def success():
+    if request.method == 'POST':
+        f = request.files['file']
+        file_path = os.path.join(UPLOAD_FOLDER, f.filename)
+        f.save(file_path)
+        return "sucesso"
 
 
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
-    return response
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == '__main__':  
+    app.run(host= '0.0.0.0', debug = True)  
 
