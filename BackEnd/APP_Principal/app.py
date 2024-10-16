@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from database import db
 from flask_cors import CORS
 from models import User, Order
@@ -16,7 +16,9 @@ db.init_app(app)
 CORS(app, resources={r"/*": {"origins": "*"}}) 
 
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
+UPLOAD_FOLDER = os.path.join(os.getcwd(), r'BackEnd\APP_Principal\uploads')
+
+print(os.getcwd())
 
 
 
@@ -88,6 +90,10 @@ def success():
         file_path = os.path.join(UPLOAD_FOLDER, f.filename)
         f.save(file_path)
         return "sucesso"
+    
+@app.route('/getImage/<filename>', methods=['GET'])
+def get_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
 
 
 
