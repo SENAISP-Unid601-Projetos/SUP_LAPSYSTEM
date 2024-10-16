@@ -34,6 +34,9 @@ btn.addEventListener("click", function(e) {
         console.log(data.message); // Mensagem de sucesso
         alert(data.message); // Exibe a mensagem ao usuário
         // Aqui você pode redirecionar o usuário ou armazenar informações no localStorage
+        window.location.href = "../../bruno/catalogo/index.html"    
+
+
     })
     .catch(error => {
         console.error('Erro:', error);
