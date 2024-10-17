@@ -35,6 +35,7 @@ btn.addEventListener("click", function(e) {
     .then(data => {
         console.log(data.message); // Mensagem de sucesso
         alert(data.message); // Exibe a mensagem ao usuário
+        window.location.href = "loginCliente.html"
     })
     .catch(error => {
         console.error('Erro:', error);
