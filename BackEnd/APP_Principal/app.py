@@ -93,7 +93,7 @@ def register_motoboy():
     # Faz o upload das imagens
     for i, key in enumerate(['file1', 'file2', 'file3', 'file4']):
         file = request.files[key]
-        file_path = os.path.join(UPLOAD_FOLDER, new_motoboy.username + key)
+        file_path = os.path.join(UPLOAD_FOLDER, new_motoboy.username + key + ".jpg")
         file.save(file_path)
 
     return jsonify({"message": "Motoboy registrado com sucesso!"}), 201
