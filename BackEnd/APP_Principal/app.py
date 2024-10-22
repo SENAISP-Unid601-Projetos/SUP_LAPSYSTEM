@@ -17,7 +17,10 @@ db.init_app(app)
 CORS(app, resources={r"/*": {"origins": "*"}}) 
 
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), r'BackEnd\APP_Principal\uploads')
+UPLOAD_FOLDER = os.path.join(os.getcwd(), r'BackEnd\APP_Principal\uploads\CopiaCNH')
+UPLOAD_FOLDER1 = os.path.join(os.getcwd(), r'BackEnd\APP_Principal\uploads\DocumentoDaMoto')
+UPLOAD_FOLDER2 = os.path.join(os.getcwd(), r'BackEnd\APP_Principal\uploads\FotoDoRosto')
+UPLOAD_FOLDER3 = os.path.join(os.getcwd(), r'BackEnd\APP_Principal\uploads\FotoMoto(ComPlaca)')
 
 print(os.getcwd())
 
@@ -91,10 +94,21 @@ def register_motoboy():
     db.session.commit()
 
     # Faz o upload das imagens
-    for i, key in enumerate(['file1', 'file2', 'file3', 'file4']):
-        file = request.files[key]
-        file_path = os.path.join(UPLOAD_FOLDER, new_motoboy.username + key + ".jpg")
-        file.save(file_path)
+    file = request.files['file1']
+    file_path = os.path.join(UPLOAD_FOLDER2, new_motoboy.username + 'file1' + ".jpg")
+    file.save(file_path)
+
+    file = request.files['file2']
+    file_path = os.path.join(UPLOAD_FOLDER, new_motoboy.username + 'file2' + ".jpg")
+    file.save(file_path)
+
+    file = request.files['file3']
+    file_path = os.path.join(UPLOAD_FOLDER3, new_motoboy.username + 'file3' + ".jpg")
+    file.save(file_path)
+
+    file = request.files['file4']
+    file_path = os.path.join(UPLOAD_FOLDER1, new_motoboy.username + 'file4' + ".jpg")
+    file.save(file_path)
 
     return jsonify({"message": "Motoboy registrado com sucesso!"}), 201
 
