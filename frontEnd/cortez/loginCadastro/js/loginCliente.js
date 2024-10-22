@@ -1,6 +1,5 @@
 btn.addEventListener("click", function(e) {
     e.preventDefault();
-    
     const usuario = document.getElementById("usuario");
     const valorUsuario = usuario.value;
     const senha = document.getElementById("senha");

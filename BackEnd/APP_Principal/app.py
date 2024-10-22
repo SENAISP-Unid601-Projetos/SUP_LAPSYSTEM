@@ -1,8 +1,9 @@
 from flask import Flask, jsonify, request, send_from_directory
 from database import db
 from flask_cors import CORS
-from models import User, Order
+from models import User, Order, Motoboy
 import os
+import json
 
 
 app = Flask(__name__)
@@ -35,6 +36,12 @@ def login_user():
     
     if user and user.password == data['password']:  # Aqui você deve usar uma verificação segura de senha
         return jsonify({"message": "Login successful", "user_id": user.id}), 200
+    
+    motoboy = Motoboy.query.filter_by(username=data['username']).first()
+
+    if motoboy and motoboy.password == data['password']:
+        return jsonify({"message": "Login successful", "motoboy_id": motoboy.id}), 200
+    
     else:
         return jsonify({"message": "Invalid username or password"}), 401
 
@@ -53,7 +60,44 @@ def register_user():
     )
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({"message": "User registered successfully"}), 201
+    return jsonify({"message": "Usuário registrado com sucesso!"}), 201
+
+@app.route('/motoboys/register', methods=['POST'])
+def register_motoboy():
+    # Verifica se há arquivos na requisição
+    if 'file1' not in request.files or 'file2' not in request.files or \
+       'file3' not in request.files or 'file4' not in request.files:
+        return jsonify({"message": "Todos os arquivos são obrigatórios"}), 400
+
+    # Extrai os dados do cadastro do FormData
+    cadastro_data = request.form.get('cadastro')
+    if not cadastro_data:
+        return jsonify({"message": "Dados do cadastro são obrigatórios"}), 400
+
+    cadastro = json.loads(cadastro_data)  # Converte a string JSON de volta para um dicionário
+
+    # Verifica se todos os campos necessários estão presentes
+    if not all(key in cadastro for key in ['username', 'password', 'email', 'cpf']):
+        return jsonify({"message": "Dados inválidos"}), 400
+
+    new_motoboy = Motoboy(
+        username=cadastro['username'],
+        password=cadastro['password'],
+        email=cadastro['email'],
+        cpf=cadastro['cpf']
+    )
+    
+    db.session.add(new_motoboy)
+    db.session.commit()
+
+    # Faz o upload das imagens
+    for i, key in enumerate(['file1', 'file2', 'file3', 'file4']):
+        file = request.files[key]
+        file_path = os.path.join(UPLOAD_FOLDER, new_motoboy.username + key)
+        file.save(file_path)
+
+    return jsonify({"message": "Motoboy registrado com sucesso!"}), 201
+
 
 @app.route('/orders', methods=['POST'])
 def create_order():
