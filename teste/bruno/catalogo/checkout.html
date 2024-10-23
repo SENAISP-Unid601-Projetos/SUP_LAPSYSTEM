@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .total-display {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resumo da Compra</h1>
+    <p>Obrigado pela sua compra!</p>
+    <div class="total-display" id="total-display"></div>
+    <button class="back-button" onclick="goBack()">Voltar para o Carrinho</button>
+
+    <script>
+        // Recuperar o total da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const total = urlParams.get('total');
+
+        // Exibir o total na página
+        document.getElementById("total-display").innerText = "Total: R$ " + total;
+
+        // Função para voltar para a página anterior
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

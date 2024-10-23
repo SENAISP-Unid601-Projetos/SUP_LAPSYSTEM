@@ -96,5 +96,23 @@ function updateTotal() {
 
   totalAmount = totalAmount.toFixed(2);
   totalAmount = totalAmount.replace(".", ",");
+
+  localStorage.setItem("totalAmount", totalAmount);
   document.querySelector(".cart-total-container span").innerText = "R$" + totalAmount;
+}
+
+function makePurchase() {
+  if (totalAmount === "0,00") {
+    alert("Seu carrinho está vazio!");
+  } else {
+    alert(
+      `
+        Obrigado pela sua compra!
+        Valor do pedido: R$${totalAmount}\n
+        Volte sempre :)
+      `
+    );
+    // Redirecionar para a página de checkout, por exemplo, passando o total
+    window.location.href = `checkout.html?total=${encodeURIComponent(totalAmount)}`;
+  }
 }
