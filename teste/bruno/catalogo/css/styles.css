@@ -213,7 +213,7 @@ section .card-item {
 }
 
 .card-item img {
-  width: 85%;
+  width: 65%;
 }
 
 .card-item h4 {
@@ -228,7 +228,7 @@ section .card-item {
 
 .card-item button {
   width: 90%;
-  padding: 15px 0px;
+  padding: 10px 0px;
   border: none;
   background: var(--blue);
   border-radius: 4px;
@@ -237,7 +237,7 @@ section .card-item {
   font-size: 1.1em;
   cursor: pointer;
   transition: 0.3s ease;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .card-item button:hover {
@@ -406,6 +406,100 @@ footer .last {
   align-items: center;
   justify-content: center;
 }
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-head-item {
+  text-align: start;
+  border-bottom: 1px solid var(--gray);
+  padding-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.second-col,
+.third-col {
+  width: 26%;
+}
+
+.cart-product td {
+  padding: 8px 0;
+}
+
+.product-identification {
+  display: flex;
+  align-items: center;
+}
+
+.cart-product-image {
+  width: 120px;
+  height: 70px;
+}
+
+.cart-product-title {
+  margin-left: 16px;
+  font-size: 18px;
+}
+
+.cart-product-price {
+  font-family: "Raleway", sans-serif;
+}
+
+.product-qtd-input {
+  width: 48px;
+  height: 34px;
+  border-radius: 6px;
+  border: 2px solid var(--blue);
+  text-align: center;
+  background: #eee;
+}
+
+.remove-product-button {
+  margin-left: 12px;
+  background: #ff0000;
+  color: var(--white);
+  padding: 10px 8px;
+  border: 0;
+  border-radius: 6px;
+
+  transition: filter 0.2s;
+}
+
+.remove-product-button:hover {
+  filter: brightness(0.8);
+}
+
+.cart-total-container {
+  border-top: 1px solid var(--gray);
+  text-align: end;
+  padding: 6px 16px 0 0;
+  font-size: 18px;
+}
+
+.cart-total-container strong {
+  margin-right: 12px;
+}
+
+.purchase-button {
+  display: flex;
+  margin: 24px auto 0;
+  background: var(--blue);
+  color: var(--white);
+  border: 0;
+  border-radius: 6px;
+  padding: 16px 20px;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+
+  transition: filter 0.2s;
+}
+
+.purchase-button:hover {
+  filter: brightness(0.8);
+}
+
 
 /* Responsive adjustments */
 
@@ -488,4 +582,5 @@ footer .last {
     flex-direction: column;
     padding-left: 10%;
   }
+  
 }
