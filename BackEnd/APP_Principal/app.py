@@ -63,7 +63,7 @@ def register_motoboy():
         return jsonify({"message": "Dados inválidos"}), 400
 
     new_motoboy = Motoboy(**cadastro)
-    db.sess ion.add(new_motoboy)
+    db.session.add(new_motoboy)
     db.session.commit()
 
     for file_key in UPLOAD_FOLDERS:
